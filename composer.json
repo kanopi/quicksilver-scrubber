@@ -1,0 +1,9 @@
+{
+    "name": "kanopi/quicksilver-scrubber",
+    "description": "Trigger scrubber via CircleCI.",
+    "type": "quicksilver-script",
+    "require": {
+      "composer/installers": "^1.0 || ^2.0"
+    },
+    "license": "MIT"
+  }
