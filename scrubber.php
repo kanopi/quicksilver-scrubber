@@ -53,7 +53,7 @@ switch ($processor) {
         $data = [
             "branch" => $primary_branch,
             "parameters" => [
-                "run_post_build_tasks" => true,
+                "after_db_clone" => true,
                 "site_name" => $pantheon_site,
                 "site_env" => $pantheon_env,
             ]
