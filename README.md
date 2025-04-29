@@ -38,12 +38,12 @@ The project uses [Terminus Secrets Manager Plugin](https://github.com/pantheon-s
 to move forward with the scripts. These are what is read within the scrubber file and used.
 
 ```bash
-terminus secret:set site-id scrubber_processor 'circleci'
-terminus secret:set site-id token 'XXXXX'
-terminus secret:set site-id repo_source 'github'
-terminus secret:set site-id repo_owner 'XXXXX'
-terminus secret:set site-id repo_name 'XXXX'
-terminus secret:set site-id primary_branch 'XXXX'
+terminus secret:set site-id scrubber_processor 'circleci' --type=env
+terminus secret:set site-id token 'XXXXX' --type=env
+terminus secret:set site-id repo_source 'github' --type=env
+terminus secret:set site-id repo_owner 'XXXXX' --type=env
+terminus secret:set site-id repo_name 'XXXX' --type=env
+terminus secret:set site-id primary_branch 'XXXX' --type=env
 ```
 
 ### Example `pantheon.yml`
@@ -54,9 +54,9 @@ Here's an example of what your `pantheon.yml` would look like if this were the o
 api_version: 1
 
 workflows:
-  database_clone:
+  clone_database:
     after:
       - type: webphp
         description: Trigger Scrubber
-        script: private/scripts/quicksilver/quicksilver-scurbber/scrubber.php
+        script: private/scripts/quicksilver/scrubber.php
 ```

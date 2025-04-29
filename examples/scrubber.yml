@@ -1,0 +1,17 @@
+preset: wordpress  # wordpress or drupal. will target core tables with PII.
+
+# For scrubbing specific tables refer to the scrubber docs.
+# https://github.com/kanopi/scrubber/blob/main/docs/datatables.md
+
+datastore:
+  settings:
+    clean-up: false
+    serverVersion: '10.4' # Make sure this DB version matches pantheon.yml
+    data_types:
+      enum: string
+    settings:
+      dbname: '%env(MYSQL_DATABASE)%'
+      user: '%env(MYSQL_USER)%'
+      password: '%env(MYSQL_PASSWORD)%'
+      host: '%env(MYSQL_HOST)%'
+      port: '%env(MYSQL_PORT)%'
