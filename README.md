@@ -7,6 +7,8 @@ This Quicksilver project is used in conjunction with the Scrubber tool to help s
 ## Requirements
 
 - Configured Scrubber Data Configuration File
+  - For more information on the Scrubber(database obfuscation) tool, refer to the [documentation](https://github.com/kanopi/scrubber).
+  - There is a starter file in the `examples` directory of this repo.
 - Configured CircleCI Job
 
 ### Installation
