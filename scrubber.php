@@ -25,11 +25,13 @@ $processor = pantheon_get_secret('scrubber_processor');
 $repo_source = pantheon_get_secret('repo_source');
 
 echo "Starting scrubber for {$pantheon_site} on {$pantheon_env}." . PHP_EOL .PHP_EOL;
-echo "Processor: {$processor}" . PHP_EOL;
-echo "Primary branch: {$primary_branch}" . PHP_EOL;
-echo "Repo owner: {$repo_owner}" . PHP_EOL;
-echo "Repo source: {$repo_source}" . PHP_EOL;
-echo "Repo name: {$repo_name}" . PHP_EOL;
+
+echo "Required Variables:" . PHP_EOL;
+echo " - Processor: {$processor}" . PHP_EOL;
+echo " - Primary branch: {$primary_branch}" . PHP_EOL;
+echo " - Repo owner: {$repo_owner}" . PHP_EOL;
+echo " - Repo source: {$repo_source}" . PHP_EOL;
+echo " - Repo name: {$repo_name}" . PHP_EOL;
 
 if (
     $processor === '' ||
@@ -106,11 +108,13 @@ if (curl_errno($ch)) {
 curl_close($ch);
 
 // Create a link to the workflow.
-$response_data = json_decode($response, true);
-$job_number = $response_data['number'];
-$workflow_id = $response_data['id'];
-$workflow_url = "https://app.circleci.com/pipelines/github/kanopi/mises-aerc/{$job_number}/workflows/{$workflow_id}";
+if ($processor == 'circleci') {
+    $response_data = json_decode($response, true);
+    $job_number = $response_data['number'];
+    $workflow_id = $response_data['id'];
+    $workflow_url = "https://app.circleci.com/pipelines/{$project_slug}/{$job_number}/workflows/{$workflow_id}";
+    echo "Check scrubber workflow status: {$workflow_url}" . PHP_EOL;
+}
 
-echo "Check workflow status: {$workflow_url}" . PHP_EOL;
 
 echo "Scrubber trigger complete." . PHP_EOL;
