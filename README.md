@@ -22,7 +22,7 @@ In order for this to work, you should have the following in your composer.json f
   },
   "extra": {
     "installer-paths": {
-      "web/private/scripts/quicksilver": ["type:quicksilver-script"]
+      "web/private/scripts/{$name}/": ["type:quicksilver-script"]
     }
   }
 }
@@ -58,7 +58,7 @@ workflows:
     after:
       - type: webphp
         description: Trigger Scrubber
-        script: private/scripts/quicksilver/scrubber.php
+        script: private/scripts/quicksilver-scrubber/scrubber.php
 ```
 
 ### Example `scrubber.yml`

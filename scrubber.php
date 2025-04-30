@@ -111,9 +111,21 @@ curl_close($ch);
 if ($processor == 'circleci') {
     $response_data = json_decode($response, true);
     $job_number = $response_data['number'];
-    $workflow_id = $response_data['id'];
-    $workflow_url = "https://app.circleci.com/pipelines/{$project_slug}/{$job_number}/workflows/{$workflow_id}";
-    echo PHP_EOL . PHP_EOL . "Check scrubber workflow status: {$workflow_url}" . PHP_EOL . PHP_EOL;
+
+    sleep(10); // Let circleci catchup on their end.
+    $ch = curl_init();
+    $url = "https://circleci.com/api/v2/project/{$project_slug}/job/{$job_number}";
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+    // Execute the request
+    $job_response = curl_exec($ch);
+    $job_data = json_decode($job_response, true);
+
+    echo PHP_EOL . PHP_EOL . "Check scrubber workflow status: {$job_data['web_url']}" . PHP_EOL . PHP_EOL;
 }
 
 
