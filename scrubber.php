@@ -1,4 +1,5 @@
 <?php
+echo "# Starting Quicksilver Scrubber" . PHP_EOL;
 
 // Don't run the scrubber on Test/Live
 if (
@@ -21,6 +22,12 @@ $primary_branch = pantheon_get_secret('primary_branch');
 $pantheon_site = $_ENV['PANTHEON_SITE_NAME'];
 $pantheon_env = $_ENV['PANTHEON_ENVIRONMENT'];
 $processor = pantheon_get_secret('scrubber_processor');
+
+echo "Starting scrubber for {$pantheon_site} on {$pantheon_env}." . PHP_EOL;
+echo "Processor: {$processor}" . PHP_EOL;
+echo "Primary branch: {$primary_branch}" . PHP_EOL;
+echo "Repo owner: {$repo_owner}" . PHP_EOL;
+echo "Repo name: {$repo_name}" . PHP_EOL;
 
 if (
     $processor === '' ||
