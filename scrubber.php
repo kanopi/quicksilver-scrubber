@@ -112,8 +112,8 @@ if ($processor == 'circleci') {
     $response_data = json_decode($response, true);
     $job_number = $response_data['number'];
     $workflow_id = $response_data['id'];
-    $workflow_url = PHP_EOL . PHP_EOL . "https://app.circleci.com/pipelines/{$project_slug}/{$job_number}/workflows/{$workflow_id}";
-    echo "Check scrubber workflow status: {$workflow_url}" . PHP_EOL;
+    $workflow_url = "https://app.circleci.com/pipelines/{$project_slug}/{$job_number}/workflows/{$workflow_id}";
+    echo PHP_EOL . PHP_EOL . "Check scrubber workflow status: {$workflow_url}" . PHP_EOL;
 }
 
 
