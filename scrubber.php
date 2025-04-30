@@ -24,7 +24,7 @@ $pantheon_env = $_ENV['PANTHEON_ENVIRONMENT'];
 $processor = pantheon_get_secret('scrubber_processor');
 $repo_source = pantheon_get_secret('repo_source');
 
-echo "Starting scrubber for {$pantheon_site} on {$pantheon_env}." . PHP_EOL;
+echo "Starting scrubber for {$pantheon_site} on {$pantheon_env}." . PHP_EOL .PHP_EOL;
 echo "Processor: {$processor}" . PHP_EOL;
 echo "Primary branch: {$primary_branch}" . PHP_EOL;
 echo "Repo owner: {$repo_owner}" . PHP_EOL;
@@ -105,8 +105,12 @@ if (curl_errno($ch)) {
 // Close the cURL session
 curl_close($ch);
 
-// If Debug variable present output the response.
-if (pantheon_get_secret('scrubber_debug') !== ''){
-    // Output the response
-    echo $response;
-}
+// Create a link to the workflow.
+$response_data = json_decode($response, true);
+$job_number = $response_data['number'];
+$workflow_id = $response_data['id'];
+$workflow_url = "https://app.circleci.com/pipelines/github/kanopi/mises-aerc/{$job_number}/workflows/{$workflow_id}";
+
+echo "Check workflow status: {$workflow_url}" . PHP_EOL;
+
+echo "Scrubber trigger complete." . PHP_EOL;
