@@ -68,8 +68,8 @@ switch ($processor) {
         ];
 
         // Encode the data as JSON
-        $data = json_encode($data);
-
+        $json_data = json_encode($data);
+        echo "CircleCI Payload: {$json_data}" . PHP_EOL;
         $url = "https://circleci.com/api/v2/project/{$project_slug}/pipeline";
         echo "CircleCI URL: {$url}" . PHP_EOL;
         $headers['Circle-Token'] = $token;
@@ -88,7 +88,7 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
 
 // Optional: follow redirects and enable verbose output for debugging
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
