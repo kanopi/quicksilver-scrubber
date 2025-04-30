@@ -38,12 +38,12 @@ The project uses [Terminus Secrets Manager Plugin](https://github.com/pantheon-s
 to move forward with the scripts. These are what is read within the scrubber file and used.
 
 ```bash
-terminus secret:set site-id scrubber_processor 'circleci' --type=env
-terminus secret:set site-id token 'XXXXX' --type=env
-terminus secret:set site-id repo_source 'github' --type=env
-terminus secret:set site-id repo_owner 'XXXXX' --type=env
-terminus secret:set site-id repo_name 'XXXX' --type=env
-terminus secret:set site-id primary_branch 'XXXX' --type=env
+terminus secret:set site-id scrubber_processor 'circleci' --type=env --scope=web,user
+terminus secret:set site-id token 'XXXXX' --type=env --scope=web,user
+terminus secret:set site-id repo_source 'github' --type=env --scope=web,user
+terminus secret:set site-id repo_owner 'XXXXX' --type=env --scope=web,user
+terminus secret:set site-id repo_name 'XXXX' --type=env --scope=web,user
+terminus secret:set site-id primary_branch 'XXXX' --type=env --scope=web,user
 ```
 
 ### Example `pantheon.yml`

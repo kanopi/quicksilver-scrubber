@@ -22,11 +22,13 @@ $primary_branch = pantheon_get_secret('primary_branch');
 $pantheon_site = $_ENV['PANTHEON_SITE_NAME'];
 $pantheon_env = $_ENV['PANTHEON_ENVIRONMENT'];
 $processor = pantheon_get_secret('scrubber_processor');
+$repo_source = pantheon_get_secret('repo_source');
 
 echo "Starting scrubber for {$pantheon_site} on {$pantheon_env}." . PHP_EOL;
 echo "Processor: {$processor}" . PHP_EOL;
 echo "Primary branch: {$primary_branch}" . PHP_EOL;
 echo "Repo owner: {$repo_owner}" . PHP_EOL;
+echo "Repo source: {$repo_source}" . PHP_EOL;
 echo "Repo name: {$repo_name}" . PHP_EOL;
 
 if (
@@ -48,7 +50,6 @@ $headers = [
 switch ($processor) {
     case 'circleci':
         $token = pantheon_get_secret('token');
-        $repo_source = pantheon_get_secret('repo_source');
 
         if ($token === '' || $repo_source === '') {
             echo "CircleCI Token not provided";
