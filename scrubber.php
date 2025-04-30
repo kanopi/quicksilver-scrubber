@@ -71,7 +71,7 @@ switch ($processor) {
         $data = json_encode($data);
 
         $url = "https://circleci.com/api/v2/project/{$project_slug}/pipeline";
-
+        echo "CircleCI URL: {$url}" . PHP_EOL;
         $headers['Circle-Token'] = $token;
         break;
     default:
