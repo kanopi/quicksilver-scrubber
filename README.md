@@ -147,7 +147,7 @@ workflows:
 
 ```
 
-If you have other workflows, they may be triggered by the API made by the hook.
+If you have other workflows, they may be triggered by the API calls made by the hook.
 To make sure they are not triggered you can do something like this
 ```
   build-test:
