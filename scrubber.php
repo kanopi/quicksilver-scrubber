@@ -72,7 +72,7 @@ switch ($processor) {
         echo "CircleCI Payload: {$json_data}" . PHP_EOL;
         $url = "https://circleci.com/api/v2/project/{$project_slug}/pipeline";
         echo "CircleCI URL: {$url}" . PHP_EOL;
-        $headers['Circle-Token'] = $token;
+        $headers[] = "Circle-Token: {$token}";
         break;
     default:
         echo "Processor not supported";
@@ -86,7 +86,6 @@ $ch = curl_init();
 // Set cURL options similar to -fsSLv in the Bash command
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
-print_r($headers);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
