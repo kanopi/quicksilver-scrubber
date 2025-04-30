@@ -1,4 +1,4 @@
-preset: wordpress  # wordpress or drupal. will target core tables with PII.
+preset: wordpress  # wordpress or drupal. Will target core tables with PII.
 
 # For scrubbing specific tables refer to the scrubber docs.
 # https://github.com/kanopi/scrubber/blob/main/docs/datatables.md
